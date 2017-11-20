@@ -64,6 +64,7 @@ def zkgetuser(self):
             data_recv = self.zkclient.recvfrom(8)
         
         users = {}
+        UserNameID = []
         if len(self.userdata) > 0:
             # The first 4 bytes don't seem to be related to the user
             for x in xrange(len(self.userdata)):
@@ -92,11 +93,13 @@ def zkgetuser(self):
                     name = uid
                 
                 users[uid] = (userid, name, int( role.encode("hex"), 16 ), password)
+                NameID = str(userid) +':'+str(name)
+                UserNameID.append(NameID)
                 
                 #print("%d, %s, %s, %s, %s" % (uid, userid, name, int( role.encode("hex"), 16 ), password))
                 userdata = userdata[72:]
                 
-        return users
+        return users , UserNameID
     except:
         return False
     

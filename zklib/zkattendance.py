@@ -69,7 +69,6 @@ def zkgetattendance(self):
                 
                 uid, state, timestamp, space = unpack( '24s1s4s11s', attendancedata.ljust(40)[:40] )
                 
-                
                 # Clean up some messy characters from the user name
                 #uid = unicode(uid.strip('\x00|\x01\x10x'), errors='ignore')
                 uid = uid.split('\x00', 1)[0]
