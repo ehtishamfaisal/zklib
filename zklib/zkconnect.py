@@ -20,7 +20,7 @@ def zkconnect(self):
         self.data_recv, addr = self.zkclient.recvfrom(1024)
         self.session_id = unpack('HHHH', self.data_recv[:8])[2]
         
-        return self.checkValid( self.data_recv )
+        return True
     except:
         return False
     
